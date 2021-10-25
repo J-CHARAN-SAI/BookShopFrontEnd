@@ -26,7 +26,7 @@ class BookService
 
         $authorDetails = $this->authorRepository->getAuthorNameFromAuthorId($bookDetails->author_id);
 
-        $authorName = $authorDetails->first_name." ".$authorDetails->lastname;
+        $authorName = $authorDetails->first_name." ".$authorDetails->last_name;
 
         return array("Title" => $bookDetails->title, "Price" => $bookDetails->price, "Author Name" => $authorName);
 
@@ -36,7 +36,7 @@ class BookService
     {
         $isDeleted = $this->bookRepository->deleteBook($bookName);
         if ($isDeleted == 1) {
-            return "Book is successfully Deleted";
+            return "Book is successfully deleted";
         }
         return "Book is not present";
     }
@@ -45,7 +45,6 @@ class BookService
     public function addBook($title, $price, $author): string
     {
         $authorDetails = $this->authorRepository->getAuthorIdFromAuthorName($author);
-
         $bookDetails = array('title' => $title, 'price' => $price, 'author_id' => $authorDetails->id);
 
         if ($this->bookRepository->addBook($bookDetails)) {
@@ -57,8 +56,8 @@ class BookService
     public function updateBook($title, $price): string
     {
         if ($this->bookRepository->updateBook($title, $price) == 1) {
-            return "Books is successfully Updated";
+            return "Books are successfully updated";
         }
-        return "Books is not available";
+        return "Book is not available";
     }
 }
