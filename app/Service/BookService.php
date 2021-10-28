@@ -4,6 +4,8 @@ namespace App\Service;
 
 use App\Repository\AuthorRepository;
 use App\Repository\BookRepository;
+use App\Repository\IAuthorRepository;
+use App\Repository\IBookRepository;
 
 class BookService
 {
@@ -11,7 +13,7 @@ class BookService
     private $bookRepository;
     private $authorRepository;
 
-    public function __construct(BookRepository $bookRepository, AuthorRepository $authorRepository)
+    public function __construct(IBookRepository $bookRepository, IAuthorRepository $authorRepository)
     {
         $this->bookRepository = $bookRepository;
         $this->authorRepository = $authorRepository;

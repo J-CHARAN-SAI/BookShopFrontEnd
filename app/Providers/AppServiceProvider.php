@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Repository\AuthorRepository;
+use App\Repository\BookRepository;
+use App\Repository\IAuthorRepository;
+use App\Repository\IBookRepository;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +17,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(IBookRepository::class, function (){
+            return new BookRepository();
+        });
+
+        $this->app->bind(IAuthorRepository::class, function (){
+            return new AuthorRepository();
+        });
     }
 
     /**
@@ -24,5 +34,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
+
     }
 }

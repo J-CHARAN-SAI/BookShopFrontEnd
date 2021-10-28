@@ -4,6 +4,8 @@ namespace Tests\Unit;
 
 use App\Repository\AuthorRepository;
 use App\Repository\BookRepository;
+use App\Repository\IAuthorRepository;
+use App\Repository\IBookRepository;
 use App\Service\BookService;
 use stdClass;
 use Tests\TestCase;
@@ -19,8 +21,8 @@ class BookServiceTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->bookRepositoryMock = $this->createMock(BookRepository::class);
-        $this->authorRepositoryMock = $this->createMock(AuthorRepository::class);
+        $this->bookRepositoryMock = $this->createMock(IBookRepository::class);
+        $this->authorRepositoryMock = $this->createMock(IAuthorRepository::class);
         $this->bookService = new BookService($this->bookRepositoryMock, $this->authorRepositoryMock);
     }
 
