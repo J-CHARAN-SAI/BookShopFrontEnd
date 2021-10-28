@@ -37,3 +37,5 @@ fileignoreconfig:
   checksum: 260e686784b3e13f642b36850c8fceee62cce347ee6e365e960cf9221b3dbdfe
 - filename: config/app.php
   checksum: 02abbdb74125c120c56c64dc3d0a90d91cfd0d9d3685b26dfed7744f3048bce2
+- filename: .env
+  checksum: 2a55521a27b6a167dd1f4875e52b3d19c2a3a2989cf57503ddef9eef19f8706c
