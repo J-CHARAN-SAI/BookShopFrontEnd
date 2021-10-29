@@ -21,8 +21,15 @@ class AuthorsFactory extends Factory
      */
     public function definition()
     {
+       $firstNames = ['Richard', 'John', 'Charlie'];
+       $lastNames = ['Robert', 'Doe', 'Brown'];
+       $emails = ['whitefalcon@gmail.com', 'pinkflamingo@gmail.com', 'babybuffalo@gmail.com'];
         return [
-            //
+
+            'first_name' => $firstNames[array_rand($firstNames)],
+            'last_name' => $lastNames[array_rand($lastNames)],
+            'email' =>  $emails[array_rand($emails)]
         ];
+
     }
 }
