@@ -12,17 +12,17 @@ class BookRepository implements IBookRepository
 
 
     /**
-     * @param $bookName
+     * @param $bookId
      * @return Builder|Model|object|null
      */
-    public function getBookDetails($bookName)
+    public function getBookDetails($bookId)
     {
-        return Books::query()->where('books.title', '=', $bookName)->first();
+        return Books::query()->where('books.id', '=', $bookId)->first();
     }
 
-    public function deleteBook($bookName): int
+    public function deleteBook($bookId): int
     {
-        return Books::query()->where('books.title', '=', $bookName)->delete();
+        return Books::query()->where('books.id', '=', $bookId)->delete();
     }
 
     public function addBook($bookDetails): bool
@@ -30,10 +30,8 @@ class BookRepository implements IBookRepository
         return Books::query()->insert($bookDetails);
     }
 
-    public function updateBook($bookName, $price): int
+    public function updateBook($bookId, $price): int
     {
-        return DB::table('books')->where('books.title', '=', $bookName)->update(['books.price' => $price]);
-//        return Books::query()->where('books.title','=',$bookName)->update(['books.price'=>$price]);
-
+        return DB::table('books')->where('books.id', '=', $bookId)->update(['books.price' => $price]);
     }
 }

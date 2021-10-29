@@ -15,15 +15,15 @@ class BookController extends Controller
         $this->bookService = $bookService;
     }
 
-    public function getBook($bookName): JsonResponse
+    public function getBook($bookId): JsonResponse
     {
-        $bookDetails = $this->bookService->getBookDetails($bookName);
+        $bookDetails = $this->bookService->getBookDetails($bookId);
         return response()->json($bookDetails);
     }
 
-    public function deleteBook($bookName): JsonResponse
+    public function deleteBook($bookId): JsonResponse
     {
-        $isDeleted = $this->bookService->deleteBook($bookName);
+        $isDeleted = $this->bookService->deleteBook($bookId);
         return response()->json($isDeleted);
     }
 
@@ -33,9 +33,9 @@ class BookController extends Controller
         return response()->json($bookAdded);
     }
 
-    public function updateBook(Request $request): JsonResponse
+    public function updateBook($bookId, Request $request): JsonResponse
     {
-        $bookUpdated = $this->bookService->updateBook($request->all()["title"], $request->all()["price"]);
+        $bookUpdated = $this->bookService->updateBook($bookId, $request->all()["price"]);
         return response()->json($bookUpdated);
     }
 }

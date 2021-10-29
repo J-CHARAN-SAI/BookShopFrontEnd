@@ -12,7 +12,7 @@ class BookControllerTest extends TestCase
      */
     public function getBook()
     {
-        $response = $this->get('/books/The Last Song');
+        $response = $this->get('/books/1');
 
         $response->assertStatus(200);
     }
@@ -32,7 +32,7 @@ class BookControllerTest extends TestCase
      */
     public function updateBook()
     {
-        $response = $this->put('/books', ['title' => 'The Last Song', 'price' => 300]);
+        $response = $this->put('/books/1', ['price' => 300]);
 
         $response->assertStatus(200);
     }
@@ -42,7 +42,7 @@ class BookControllerTest extends TestCase
      */
     public function deleteBook()
     {
-        $response = $this->delete('/books/The Last Song');
+        $response = $this->delete('/books/1');
 
         $response->assertStatus(200);
     }

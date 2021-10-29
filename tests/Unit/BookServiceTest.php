@@ -2,8 +2,6 @@
 
 namespace Tests\Unit;
 
-use App\Repository\AuthorRepository;
-use App\Repository\BookRepository;
 use App\Repository\IAuthorRepository;
 use App\Repository\IBookRepository;
 use App\Service\BookService;
@@ -29,13 +27,13 @@ class BookServiceTest extends TestCase
     /**
      * @test
      */
-    public function shouldReturnBookDetailsWhenValidBookName()
+    public function shouldReturnBookDetailsWhenValidBookIdIsPassed()
     {
         $bookDetails = new stdClass();
-        $bookDetails->id = "12";
+        $bookDetails->id = 12;
         $bookDetails->title = "The Last Song";
-        $bookDetails->price = "200";
-        $bookDetails->author_id = "2";
+        $bookDetails->price = 200;
+        $bookDetails->author_id = 2;
         $this->bookRepositoryMock->method('getBookDetails')->willReturn($bookDetails);
         $authorDetails = new stdClass();
         $authorDetails->first_name = "Nichols";
@@ -44,7 +42,7 @@ class BookServiceTest extends TestCase
         $authorName = $authorDetails->first_name . " " . $authorDetails->last_name;
 
         $expectedBookDetails = array("Title" => $bookDetails->title, "Price" => $bookDetails->price, "Author Name" => $authorName);
-        $actualBookDetails = $this->bookService->getBookDetails($bookDetails->title);
+        $actualBookDetails = $this->bookService->getBookDetails($bookDetails->id);
 
         assertEquals($expectedBookDetails, $actualBookDetails);
     }
@@ -52,7 +50,7 @@ class BookServiceTest extends TestCase
     /**
      * @test
      */
-    public function shouldReturnEmptyArrayWhenInvalidBookName()
+    public function shouldReturnEmptyArrayWhenInvalidBookIdIsPassed()
     {
         $expectedBookDetails = array();
         $this->bookRepositoryMock->method('getBookDetails')->willReturn(null);
@@ -97,7 +95,7 @@ class BookServiceTest extends TestCase
     public function shouldDeleteBookWhenBookIsPresent()
     {
         $this->bookRepositoryMock->method('deleteBook')->willReturn(1);
-        $actualMessage = $this->bookService->deleteBook('Never wants to die');
+        $actualMessage = $this->bookService->deleteBook(1);
 
         assertEquals("Book is successfully deleted", $actualMessage);
     }
@@ -108,7 +106,7 @@ class BookServiceTest extends TestCase
     public function shouldNotDeleteBookWhenBookIsNotPresent()
     {
         $this->bookRepositoryMock->method('deleteBook')->willReturn(0);
-        $actualMessage = $this->bookService->deleteBook('Never wants to live');
+        $actualMessage = $this->bookService->deleteBook(100);
 
         assertEquals("Book is not present", $actualMessage);
     }
@@ -119,7 +117,7 @@ class BookServiceTest extends TestCase
     public function shouldUpdateBookDetailsWhenBookIsPresent()
     {
         $this->bookRepositoryMock->method('updateBook')->willReturn(1);
-        $actualMessage = $this->bookService->updateBook('Never wants to die', 300);
+        $actualMessage = $this->bookService->updateBook(1, 300);
 
         assertEquals("Books are successfully updated", $actualMessage);
     }
@@ -130,7 +128,7 @@ class BookServiceTest extends TestCase
     public function shouldNotUpdateBookDetailsWhenBookIsNotPresent()
     {
         $this->bookRepositoryMock->method('updateBook')->willReturn(0);
-        $actualMessage = $this->bookService->updateBook('Never wants to live', 100);
+        $actualMessage = $this->bookService->updateBook(3000, 100);
 
         assertEquals("Book is not available", $actualMessage);
     }

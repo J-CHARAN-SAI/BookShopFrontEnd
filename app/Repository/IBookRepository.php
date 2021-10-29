@@ -5,11 +5,11 @@ namespace App\Repository;
 interface IBookRepository
 {
 
-    function getBookDetails($bookName);
+    function getBookDetails($bookId);
 
-    function deleteBook($bookName): int;
+    function deleteBook($bookId): int;
 
     function addBook($bookDetails): bool;
 
-    function updateBook($bookName, $price): int;
+    function updateBook($bookId, $price): int;
 }

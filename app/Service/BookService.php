@@ -2,8 +2,6 @@
 
 namespace App\Service;
 
-use App\Repository\AuthorRepository;
-use App\Repository\BookRepository;
 use App\Repository\IAuthorRepository;
 use App\Repository\IBookRepository;
 
@@ -19,24 +17,24 @@ class BookService
         $this->authorRepository = $authorRepository;
     }
 
-    public function getBookDetails($bookName): array
+    public function getBookDetails($bookId): array
     {
-        $bookDetails = $this->bookRepository->getBookDetails($bookName);
+        $bookDetails = $this->bookRepository->getBookDetails($bookId);
         if ($bookDetails == null) {
             return [];
         }
 
         $authorDetails = $this->authorRepository->getAuthorNameFromAuthorId($bookDetails->author_id);
 
-        $authorName = $authorDetails->first_name." ".$authorDetails->last_name;
+        $authorName = $authorDetails->first_name . " " . $authorDetails->last_name;
 
         return array("Title" => $bookDetails->title, "Price" => $bookDetails->price, "Author Name" => $authorName);
 
     }
 
-    public function deleteBook($bookName): string
+    public function deleteBook($bookId): string
     {
-        $isDeleted = $this->bookRepository->deleteBook($bookName);
+        $isDeleted = $this->bookRepository->deleteBook($bookId);
         if ($isDeleted == 1) {
             return "Book is successfully deleted";
         }
@@ -55,9 +53,9 @@ class BookService
         return "We are not able to add a book";
     }
 
-    public function updateBook($title, $price): string
+    public function updateBook($bookId, $price): string
     {
-        if ($this->bookRepository->updateBook($title, $price) == 1) {
+        if ($this->bookRepository->updateBook($bookId, $price) == 1) {
             return "Books are successfully updated";
         }
         return "Book is not available";

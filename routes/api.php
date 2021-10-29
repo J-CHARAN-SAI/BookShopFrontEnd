@@ -19,7 +19,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/books/{bookName}', [BookController::class, 'getBook']);
-Route::delete('/books/{bookName}', [BookController::class, 'deleteBook']);
+Route::get('/books/{id}', [BookController::class, 'getBook']);
+Route::delete('/books/{id}', [BookController::class, 'deleteBook']);
 Route::post('/books', [BookController::class, 'addBook']);
-Route::put('/books', [BookController::class, 'updateBook']);
+Route::put('/books/{id}', [BookController::class, 'updateBook']);
