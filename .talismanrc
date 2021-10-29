@@ -39,3 +39,7 @@ fileignoreconfig:
   checksum: 02abbdb74125c120c56c64dc3d0a90d91cfd0d9d3685b26dfed7744f3048bce2
 - filename: .env
   checksum: 2a55521a27b6a167dd1f4875e52b3d19c2a3a2989cf57503ddef9eef19f8706c
+- filename: .env.example
+  checksum: fa4abcd1b1f776bc0fe5bc76bee4fd56b4964e7e4eed0fa36a0cddb50f718174
+- filename: deploy-bookshop.php
+  checksum: d606178882962916c836f3242e6bd30cf04298c3bae74259a1904636b00af1fb
