@@ -35,7 +35,7 @@ class BookController extends Controller
 
     public function updateBook($bookId, Request $request): JsonResponse
     {
-        $bookUpdated = $this->bookService->updateBook($bookId, $request->all()["price"]);
+        $bookUpdated = $this->bookService->updateBook($bookId ,$request->all()["title"] , $request->all()["price"]);
         return response()->json($bookUpdated);
     }
 }

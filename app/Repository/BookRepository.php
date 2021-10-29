@@ -30,8 +30,8 @@ class BookRepository implements IBookRepository
         return Books::query()->insert($bookDetails);
     }
 
-    public function updateBook($bookId, $price): int
+    public function updateBook($bookId,$title, $price): int
     {
-        return DB::table('books')->where('books.id', '=', $bookId)->update(['books.price' => $price]);
+        return DB::table('books')->where('books.id', '=', $bookId)->update(['books.title' => $title,'books.price' => $price]);
     }
 }

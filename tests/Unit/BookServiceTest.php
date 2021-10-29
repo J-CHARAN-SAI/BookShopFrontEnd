@@ -117,7 +117,7 @@ class BookServiceTest extends TestCase
     public function shouldUpdateBookDetailsWhenBookIsPresent()
     {
         $this->bookRepositoryMock->method('updateBook')->willReturn(1);
-        $actualMessage = $this->bookService->updateBook(1, 300);
+        $actualMessage = $this->bookService->updateBook(1,"Hakuna Matata", 300);
 
         assertEquals("Books are successfully updated", $actualMessage);
     }
@@ -128,7 +128,7 @@ class BookServiceTest extends TestCase
     public function shouldNotUpdateBookDetailsWhenBookIsNotPresent()
     {
         $this->bookRepositoryMock->method('updateBook')->willReturn(0);
-        $actualMessage = $this->bookService->updateBook(3000, 100);
+        $actualMessage = $this->bookService->updateBook(3000, "Hakuna Matata",100);
 
         assertEquals("Book is not available", $actualMessage);
     }

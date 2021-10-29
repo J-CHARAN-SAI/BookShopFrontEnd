@@ -45,6 +45,10 @@ class BookService
     public function addBook($title, $price, $author): string
     {
         $authorDetails = $this->authorRepository->getAuthorIdFromAuthorName($author);
+
+        if ($authorDetails == null) {
+            return "We are not able to add a book";
+        }
         $bookDetails = array('title' => $title, 'price' => $price, 'author_id' => $authorDetails->id);
 
         if ($this->bookRepository->addBook($bookDetails)) {
@@ -53,9 +57,9 @@ class BookService
         return "We are not able to add a book";
     }
 
-    public function updateBook($bookId, $price): string
+    public function updateBook($bookId, $title, $price): string
     {
-        if ($this->bookRepository->updateBook($bookId, $price) == 1) {
+        if ($this->bookRepository->updateBook($bookId, $title, $price) == 1) {
             return "Books are successfully updated";
         }
         return "Book is not available";

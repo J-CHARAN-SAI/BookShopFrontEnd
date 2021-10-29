@@ -11,5 +11,5 @@ interface IBookRepository
 
     function addBook($bookDetails): bool;
 
-    function updateBook($bookId, $price): int;
+    function updateBook($bookId,$title , $price): int;
 }
