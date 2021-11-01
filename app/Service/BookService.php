@@ -28,7 +28,7 @@ class BookService
 
         $authorName = $authorDetails->first_name . " " . $authorDetails->last_name;
 
-        return array("Title" => $bookDetails->title, "Price" => $bookDetails->price, "Author Name" => $authorName);
+        return array("Title" => $bookDetails->title, "Price" => (int)$bookDetails->price, "Author Name" => $authorName);
 
     }
 
