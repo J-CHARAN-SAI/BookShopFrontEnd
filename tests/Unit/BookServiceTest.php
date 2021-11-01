@@ -38,10 +38,11 @@ class BookServiceTest extends TestCase
         $authorDetails = new stdClass();
         $authorDetails->first_name = "Nichols";
         $authorDetails->last_name = "Sparks";
-        $this->authorRepositoryMock->method('getAuthorNameFromAuthorId')->willReturn($authorDetails);
-        $authorName = $authorDetails->first_name . " " . $authorDetails->last_name;
+        $authorDetails->email= "nicholassparks@gmail.com";
+        $this->authorRepositoryMock->method('getAuthorDetailsFromAuthorId')->willReturn($authorDetails);
 
-        $expectedBookDetails = array("Title" => $bookDetails->title, "Price" => $bookDetails->price, "Author Name" => $authorName);
+
+        $expectedBookDetails = array("Title" => $bookDetails->title, "Price" => $bookDetails->price, "Author" => $authorDetails );
         $actualBookDetails = $this->bookService->getBookDetails($bookDetails->id);
 
         assertEquals($expectedBookDetails, $actualBookDetails);
@@ -69,7 +70,7 @@ class BookServiceTest extends TestCase
 
         $this->authorRepositoryMock->method('getAuthorIdFromAuthorName')->willReturn($authorDetails);
         $this->bookRepositoryMock->method('addBook')->willReturn(true);
-        $actualMessage = $this->bookService->addBook('Never wants to die', 300, 'Regina');
+        $actualMessage = $this->bookService->addBook('Never wants to die', 300, ['first_name'=>'Nicholas','last_name'=>'Sparks','email'=>'nicholassparks@gmail.com']);
 
         assertEquals("Book is successfully added", $actualMessage);
     }
@@ -84,7 +85,7 @@ class BookServiceTest extends TestCase
 
         $this->authorRepositoryMock->method('getAuthorIdFromAuthorName')->willReturn($authorDetails);
         $this->bookRepositoryMock->method('addBook')->willReturn(false);
-        $actualMessage = $this->bookService->addBook('Never wants to die', 300, 'Harsha');
+        $actualMessage = $this->bookService->addBook('Never wants to die', 300, ['first_name'=>'Nicholas','last_name'=>'Sparks','email'=>'nicholassparks@gmail.com'] );
 
         assertEquals("We are not able to add a book", $actualMessage);
     }

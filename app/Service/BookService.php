@@ -23,12 +23,10 @@ class BookService
         if ($bookDetails == null) {
             return [];
         }
+        $authorDetails = $this->authorRepository->getAuthorDetailsFromAuthorId($bookDetails->author_id);
 
-        $authorDetails = $this->authorRepository->getAuthorNameFromAuthorId($bookDetails->author_id);
 
-        $authorName = $authorDetails->first_name . " " . $authorDetails->last_name;
-
-        return array("Title" => $bookDetails->title, "Price" => (int)$bookDetails->price, "Author Name" => $authorName);
+        return array("Title" => $bookDetails->title, "Price" => (int)$bookDetails->price, "Author" => $authorDetails);
 
     }
 
@@ -44,12 +42,16 @@ class BookService
 
     public function addBook($title, $price, $author): string
     {
-        $authorDetails = $this->authorRepository->getAuthorIdFromAuthorName($author);
+
+        $authorDetails = $this->authorRepository->getAuthorIdFromAuthorName($author['first_name']);
 
         if ($authorDetails == null) {
-            return "We are not able to add a book";
+            $authorId =$this->authorRepository->addAuthor($author);
+            $bookDetails =array('title' => $title, 'price' => $price, 'author_id' => $authorId );
+
+        }else{
+            $bookDetails = array('title' => $title, 'price' => $price, 'author_id' => $authorDetails->id);
         }
-        $bookDetails = array('title' => $title, 'price' => $price, 'author_id' => $authorDetails->id);
 
         if ($this->bookRepository->addBook($bookDetails)) {
             return "Book is successfully added";

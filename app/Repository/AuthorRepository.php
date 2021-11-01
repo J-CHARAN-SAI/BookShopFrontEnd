@@ -12,8 +12,13 @@ class AuthorRepository implements IAuthorRepository
         return Authors::query()->where('authors.first_name', '=', $authorName)->first('id');
     }
 
-    public function getAuthorNameFromAuthorId($authorId)
+    public function addAuthor($author): int
     {
-        return Authors::query()->where('authors.id', '=', $authorId)->first(['first_name','last_name']);
+        return Authors::query()->insertGetId($author);
+    }
+
+    public function getAuthorDetailsFromAuthorId($authorId)
+    {
+        return Authors::query()->where('authors.id', '=', $authorId)->first(['first_name','last_name','email']);
     }
 }

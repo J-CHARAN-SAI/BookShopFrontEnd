@@ -6,5 +6,7 @@ interface IAuthorRepository
 {
     function getAuthorIdFromAuthorName($authorName);
 
-    function getAuthorNameFromAuthorId($authorId);
+    function getAuthorDetailsFromAuthorId($authorId);
+
+    function addAuthor($author);
 }
