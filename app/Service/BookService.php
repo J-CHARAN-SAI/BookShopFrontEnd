@@ -26,7 +26,7 @@ class BookService
         $authorDetails = $this->authorRepository->getAuthorDetailsFromAuthorId($bookDetails->author_id);
 
 
-        return array("Title" => $bookDetails->title, "Price" => (int)$bookDetails->price, "Author" => $authorDetails);
+        return array("title" => $bookDetails->title, "price" => (int)$bookDetails->price, "author" => $authorDetails);
 
     }
 

@@ -27,7 +27,7 @@ class BookControllerTest extends TestCase
                                                                                                     "last_name" => "Sharon" ,
                                                                                                     "email" => "reginasharon@gmail.com"]]);
 
-        $response->assertStatus(200);
+        $response->assertStatus(201);
     }
 
     /**

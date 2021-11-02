@@ -42,7 +42,7 @@ class BookServiceTest extends TestCase
         $this->authorRepositoryMock->method('getAuthorDetailsFromAuthorId')->willReturn($authorDetails);
 
 
-        $expectedBookDetails = array("Title" => $bookDetails->title, "Price" => $bookDetails->price, "Author" => $authorDetails );
+        $expectedBookDetails = array("title" => $bookDetails->title, "price" => $bookDetails->price, "author" => $authorDetails );
         $actualBookDetails = $this->bookService->getBookDetails($bookDetails->id);
 
         assertEquals($expectedBookDetails, $actualBookDetails);
