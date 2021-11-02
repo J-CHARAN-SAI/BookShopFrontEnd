@@ -11,7 +11,19 @@ use Illuminate\Routing\Controller as BaseController;
  * @OA\Info(
  *    title="BookShop API",
  *    version="1.0.0",
- * )
+ * ),
+ *@OA\Tag(
+ *   name="getBook",
+ * ),
+ * @OA\Tag(
+ *   name="addBook",
+ * ),
+ * @OA\Tag(
+ *   name="updateBook",
+ * ),
+ * @OA\Tag(
+ *   name="deleteBook",
+ * ),
  */
 class Controller extends BaseController
 {

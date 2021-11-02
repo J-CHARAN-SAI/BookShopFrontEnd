@@ -229,6 +229,20 @@
             }
         }
     },
+    "tags": [
+        {
+            "name": "getBook"
+        },
+        {
+            "name": "addBook"
+        },
+        {
+            "name": "updateBook"
+        },
+        {
+            "name": "deleteBook"
+        }
+    ],
     "security": [
         []
     ]
