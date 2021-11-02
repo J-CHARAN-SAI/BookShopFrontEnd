@@ -1,0 +1,235 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "BookShop API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/books/{bookId}": {
+            "get": {
+                "tags": [
+                    "getBook"
+                ],
+                "summary": "Get details of a Book",
+                "description": "Returns details of a Book",
+                "operationId": "getBook",
+                "parameters": [
+                    {
+                        "name": "bookId",
+                        "in": "path",
+                        "description": "Book Id",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "title": {
+                                            "type": "string",
+                                            "example": "Hakuna Matata"
+                                        },
+                                        "price": {
+                                            "type": "number",
+                                            "format": "integer",
+                                            "example": 200
+                                        },
+                                        "author": {
+                                            "properties": {
+                                                "first_name": {
+                                                    "type": "string",
+                                                    "example": "John"
+                                                },
+                                                "last_name": {
+                                                    "type": "string",
+                                                    "example": "Brown"
+                                                },
+                                                "email": {
+                                                    "type": "string",
+                                                    "example": "babybuffalo@gmail.com"
+                                                }
+                                            },
+                                            "type": "object",
+                                            "example": {
+                                                "first_name": "John",
+                                                "last_name": "Brown",
+                                                "email": "babybuffalo@gmail.com"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "updateBook"
+                ],
+                "summary": "Update a Book",
+                "operationId": "86c800372bd2d01e451ca584e32eda0c",
+                "parameters": [
+                    {
+                        "name": "bookId",
+                        "in": "path",
+                        "description": "Book Id",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Update Book Details",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "type": "string",
+                                        "example": "The Elephant Whisperer"
+                                    },
+                                    "price": {
+                                        "type": "number",
+                                        "format": "integer",
+                                        "example": 850
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                },
+                                "example": "Book is successfully updated"
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "deleteBook"
+                ],
+                "summary": "Delete a Book",
+                "description": "Deletes a Book",
+                "operationId": "deleteBook",
+                "parameters": [
+                    {
+                        "name": "bookId",
+                        "in": "path",
+                        "description": "Book Id",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                },
+                                "example": "Book is successfully deleted"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Book not found"
+                    }
+                }
+            }
+        },
+        "/books": {
+            "post": {
+                "tags": [
+                    "addBook"
+                ],
+                "summary": "Add a new Book",
+                "operationId": "c1d6630243c08f3aa71d3cbcceefb2d6",
+                "requestBody": {
+                    "description": "New Book Details",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "type": "string",
+                                        "example": "Davinci Code"
+                                    },
+                                    "price": {
+                                        "type": "number",
+                                        "format": "integer",
+                                        "example": 550
+                                    },
+                                    "author": {
+                                        "properties": {
+                                            "first_name": {
+                                                "type": "string",
+                                                "example": "Dan"
+                                            },
+                                            "last_name": {
+                                                "type": "string",
+                                                "example": "Brown"
+                                            },
+                                            "email": {
+                                                "type": "string",
+                                                "example": "dan@danbrown.com"
+                                            }
+                                        },
+                                        "type": "object",
+                                        "example": {
+                                            "first_name": "Dan",
+                                            "last_name": "Brown",
+                                            "email": "dan@danbrown.com"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                },
+                                "example": "Book is successfully added"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "security": [
+        []
+    ]
+}

@@ -43,3 +43,9 @@ fileignoreconfig:
   checksum: fa4abcd1b1f776bc0fe5bc76bee4fd56b4964e7e4eed0fa36a0cddb50f718174
 - filename: deploy-bookshop.php
   checksum: d606178882962916c836f3242e6bd30cf04298c3bae74259a1904636b00af1fb
+- filename: storage/api-docs/api-docs.json
+  checksum: 8101d1cb7d19e35e0a4868f09c40fb9a44c6f607120170ce0f84c6451ff6eae8
+- filename: composer.lock
+  checksum: fdbac0aee6321c9055fc9e08fb06349b3712b0c445c97cf85ebacef97b063984
+- filename: config/l5-swagger.php
+  checksum: d42d43674365e542defa5f884d2775300219f596078a15187df236402479123f
