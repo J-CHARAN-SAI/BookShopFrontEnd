@@ -34,7 +34,7 @@ class BookService
     {
         $isDeleted = $this->bookRepository->deleteBook($bookId);
         if ($isDeleted == 1) {
-            return "Book is successfully deleted";
+            return "Book is deleted successfully";
         }
         return "Book is not present";
     }
@@ -54,7 +54,7 @@ class BookService
         }
 
         if ($this->bookRepository->addBook($bookDetails)) {
-            return "Book is successfully added";
+            return "Book is added successfully";
         }
         return "We are not able to add a book";
     }
@@ -62,7 +62,7 @@ class BookService
     public function updateBook($bookId, $title, $price): string
     {
         if ($this->bookRepository->updateBook($bookId, $title, $price) == 1) {
-            return "Books are successfully updated";
+            return "Book is updated successfully";
         }
         return "Book is not available";
     }

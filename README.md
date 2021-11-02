@@ -1,65 +1,159 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+## Overview
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Creating a BookShop API, where users are able to Add, Edit, Update & Delete the book details.
 
-## About Laravel
+## API
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Below is a list of API endpoints with their respective input and output. Please note that the application needs to be running. For more information about how to run the application, please refer to [run the application](#run-the-application) section below.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Add Book
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Endpoint
 
-## Learning Laravel
+```
+POST /books
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Example of body
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+```json
+{
+    "title" : "The Last Song",
+    "price" : 300,
+    "author" : {
+        "first_name" : "John",
+        "last_name" : "Robert" ,
+        "email" : "whitefalcon@gmail.com"
+    }
+}
+```
 
-## Laravel Sponsors
+Parameters
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+| Parameter      | Description                                |
+| -------------- | ------------------------------------------ |
+| `title` | Title of the book   |
+| `price`         | Price of the book      |
+| `author:first_name`      | Author's first name of the book |
+| `author:last_name`      | Author's last name of the book |
+| `author:email`      | Author's email id of the book |
 
-### Premium Partners
+Posting readings using CURL
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[CMS Max](https://www.cmsmax.com/)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+```console
+$ curl \
+  -X POST \
+  -H "Content-Type: application/json" \
+  "http://localhost:8000/books" \
+  -d '{"title": "The Last Song", "price": 100,"author": {"first_name": "John","last_name": "Robert","email": "whitefalcon@gmail.com"}}'
+}
+```
 
-## Contributing
+The above command returns 200 OK and `{Book is added successfully}`.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Get Book Details
 
-## Code of Conduct
+Endpoint
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```
+GET /books/<bookId>
+```
 
-## Security Vulnerabilities
+Parameters
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+| Parameter      | Description                              |
+| -------------- | ---------------------------------------- |
+| `bookId` | One of the book id available in Books table |
 
-## License
+Retrieving readings using CURL
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```console
+$ curl "http://localhost:8000/books/2"
+```
+
+Example output
+
+```json
+{
+    "Title": "The Last Drink",
+    "Price": 1000,
+    "Author": {
+        "first_name": "John",
+        "last_name": "Robert",
+        "email": "whitefalcon@gmail.com"
+    }
+}
+```
+
+### Update Book details
+
+Endpoint
+
+```
+PUT /books/<bookId>
+```
+
+Parameters
+
+| Parameter      | Description                              |
+| -------------- | ---------------------------------------- |
+| `bookId` | One of the book id available in Books table |
+
+Retrieving readings using CURL
+
+```console
+$ curl \
+  -X PUT \
+  -H "Content-Type: application/json" \
+  "http://localhost:8000/books/2" \
+  -d '{"title": "The Last Song", "price": 300}'
+}
+```
+
+The above command returns 200 OK and `{Book is updated successfully}`.
+
+
+### Delete Book
+
+Endpoint
+
+```
+DELETE /books/<bookId>
+```
+
+Parameters
+
+| Parameter      | Description                              |
+| -------------- | ---------------------------------------- |
+| `bookId` | One of the book id available in Books table |
+
+Retrieving readings using CURL
+
+```console
+$ curl "http://localhost:8000/books/2"
+```
+The above command returns 200 OK and `{Book is deleted successfully}`.
+
+Compatible IDEs
+
+Tested on:
+
+- Visual Studio Code(with PHP Intelephense & PHPUnit extension)
+- IntelliJ IDEA Ultimate
+
+## Useful commands
+
+### Build & Run the project
+
+```terminal
+$ ./deploy-bookshop.php
+
+Above command will start the application on url `http://127.0.0.1:8000`.
+```
+
+### Run the tests
+
+```terminal
+$ php artisan test
+```
+

@@ -72,7 +72,7 @@ class BookServiceTest extends TestCase
         $this->bookRepositoryMock->method('addBook')->willReturn(true);
         $actualMessage = $this->bookService->addBook('Never wants to die', 300, ['first_name'=>'Nicholas','last_name'=>'Sparks','email'=>'nicholassparks@gmail.com']);
 
-        assertEquals("Book is successfully added", $actualMessage);
+        assertEquals("Book is added successfully", $actualMessage);
     }
 
     /**
@@ -98,7 +98,7 @@ class BookServiceTest extends TestCase
         $this->bookRepositoryMock->method('deleteBook')->willReturn(1);
         $actualMessage = $this->bookService->deleteBook(1);
 
-        assertEquals("Book is successfully deleted", $actualMessage);
+        assertEquals("Book is deleted successfully", $actualMessage);
     }
 
     /**
@@ -120,7 +120,7 @@ class BookServiceTest extends TestCase
         $this->bookRepositoryMock->method('updateBook')->willReturn(1);
         $actualMessage = $this->bookService->updateBook(1,"Hakuna Matata", 300);
 
-        assertEquals("Books are successfully updated", $actualMessage);
+        assertEquals("Book is updated successfully", $actualMessage);
     }
 
     /**
