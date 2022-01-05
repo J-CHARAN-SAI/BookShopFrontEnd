@@ -14,5 +14,34 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layout');
 });
+
+Route::get('/addBook',function (){
+    return view('AddBook');
+});
+
+Route::post('/addBook','App\Http\Controllers\BookController@addBook');
+
+
+
+Route::get('/getBook',function (){
+    return view('GetBook');
+});
+
+
+
+Route::get('/editBook',function (){
+    return view('EditBook');
+});
+
+Route::put('/editBook','App\Http\Controllers\BookController@updateBook');
+
+
+
+Route::get('/deleteBook',function (){
+    return view('DeleteBook');
+});
+
+Route::delete('/deleteBook','App\Http\Controllers\BookController@deleteBook');
+
