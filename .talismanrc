@@ -49,4 +49,5 @@ fileignoreconfig:
   checksum: fdbac0aee6321c9055fc9e08fb06349b3712b0c445c97cf85ebacef97b063984
 - filename: config/l5-swagger.php
   checksum: d42d43674365e542defa5f884d2775300219f596078a15187df236402479123f
-
+- filename: composer.lock
+  checksum: a798d7b61151b453a7a7c188f05dfac89e478c5d8306c82daefdff46a7aaedfb

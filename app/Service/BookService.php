@@ -17,17 +17,28 @@ class BookService
         $this->authorRepository = $authorRepository;
     }
 
-    public function getBookDetails($bookId): array
+    public function getBookDetails($title): array
     {
-        $bookDetails = $this->bookRepository->getBookDetails($bookId);
+        $bookDetails = $this->bookRepository->getBookDetails($title);
+
         if ($bookDetails == null) {
             return [];
         }
-        $authorDetails = $this->authorRepository->getAuthorDetailsFromAuthorId($bookDetails->author_id);
 
+        return $this->addAuthorDetails($bookDetails);
+    }
 
-        return array("title" => $bookDetails->title, "price" => (int)$bookDetails->price, "author" => $authorDetails);
+    private function addAuthorDetails($bookDetails){
 
+        $number =0 ;
+        foreach ($bookDetails as $book){
+            $authorDetails = $this->authorRepository->getAuthorDetailsFromAuthorId($book["author_id"]);
+            $bookDetails[$number]["firstname"] =$authorDetails->first_name;
+            $bookDetails[$number]["lastname"] =$authorDetails->last_name;
+            $bookDetails[$number]["email"] =$authorDetails->email;
+            $number++;
+        }
+        return $bookDetails;
     }
 
     public function deleteBook($bookId): string
@@ -65,5 +76,10 @@ class BookService
             return "Book is updated successfully";
         }
         return "Book is not available";
+    }
+
+    public function getDataOfBook($id){
+
+        return $this->bookRepository->getDataOfBook($id);
     }
 }

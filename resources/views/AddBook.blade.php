@@ -4,7 +4,6 @@
 @section('content')
 
 
-
 <h1>Add Book</h1>
 
 <div>
@@ -42,15 +41,16 @@
     <div>
         {{Form::submit('Submit' )}}
     </div>
-    <script>
-        var msg = '{{Session::get('alert')}}';
-        var exist = '{{Session::has('alert')}}';
-        if(exist){
-            alert(msg);
-        }
-    </script>
+
+    {!! Form::close() !!}
 </div>
 
+@if(session()->has('alert'))
+<div class="alert alert-success alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    {{ Session::get('alert') }}
+</div>
+@endif
 
-{!! Form::close() !!}
+
 @endsection

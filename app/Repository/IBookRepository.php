@@ -5,7 +5,7 @@ namespace App\Repository;
 interface IBookRepository
 {
 
-    function getBookDetails($bookId);
+    function getBookDetails($title): array;
 
     function deleteBook($bookId): int;
 

@@ -24,24 +24,16 @@ Route::get('/addBook',function (){
 Route::post('/addBook','App\Http\Controllers\BookController@addBook');
 
 
-
 Route::get('/getBook',function (){
     return view('GetBook');
 });
 
+Route::get('/bookDetails','App\Http\Controllers\BookController@getBook');
 
 
-Route::get('/editBook',function (){
-    return view('EditBook');
-});
+Route::put('/editBook/{id}','App\Http\Controllers\BookController@updateBook');
 
-Route::put('/editBook','App\Http\Controllers\BookController@updateBook');
+Route::get('/editBook/{id}', 'App\Http\Controllers\BookController@getDataOfBook');
 
-
-
-Route::get('/deleteBook',function (){
-    return view('DeleteBook');
-});
-
-Route::delete('/deleteBook','App\Http\Controllers\BookController@deleteBook');
+Route::get('/bookDetails/delete/{id}','App\Http\Controllers\BookController@deleteBook');
 

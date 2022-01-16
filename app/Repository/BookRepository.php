@@ -11,13 +11,11 @@ class BookRepository implements IBookRepository
 {
 
 
-    /**
-     * @param $bookId
-     * @return Builder|Model|object|null
-     */
-    public function getBookDetails($bookId)
+
+    public function getBookDetails($title): array
     {
-        return Books::query()->where('books.id', '=', $bookId)->first();
+        $title="%".$title."%";
+        return Books::query()->where('books.title', 'like', $title)->get()->toArray();
     }
 
     public function deleteBook($bookId): int
@@ -33,5 +31,10 @@ class BookRepository implements IBookRepository
     public function updateBook($bookId,$title, $price): int
     {
         return DB::table('books')->where('books.id', '=', $bookId)->update(['books.title' => $title,'books.price' => $price]);
+    }
+
+    public function getDataOfBook($id): array
+    {
+        return Books::query()->where('books.id', '=', $id )->first()->toArray();
     }
 }
